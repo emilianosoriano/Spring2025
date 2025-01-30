@@ -1,0 +1,57 @@
+# Node.js modules and environment files
+node_modules/
+.env
+*.env.local
+
+# Logs and debug files
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build artifacts
+dist/
+build/
+
+# Vite cache
+.vite/
+.vite-temp/
+
+# React specific
+*.cache
+*.esm.js
+
+# Temporary files and directories
+tmp/
+temp/
+
+# OS system files
+.DS_Store
+Thumbs.db
+
+# TypeScript build outputs
+*.tsbuildinfo
+
+# Django
+backend/db.sqlite3  # SQLite database file
+backend/__pycache__/
+backend/staticfiles/
+backend/media/
+
+# Python-related files
+*.pyc
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+*.coverage
+
+# Virtual environment folder
+venv/
+env/
+
+# IDE/editor specific files
+.vscode/
+.idea/
+*.swp

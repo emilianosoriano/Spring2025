@@ -1,5 +1,6 @@
 {
   "name": "front-end",
+  "proxy": "https://spring2025.onrender.com/",
   "private": true,
   "version": "0.0.0",
   "type": "module",

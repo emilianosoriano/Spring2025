@@ -1,29 +1,27 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 # Create your models here.
-class User(models.Model):
-    username = models.CharField(max_length=100, unique=True)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=100)
+class CustomUser(AbstractUser):
+    bio = models.TextField(max_length=500, blank=True, null=True)
 
-    def __str__(self):
-        return self.username
-
-
-class Course(models.Model):
+class Lesson(models.Model):
     title = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(max_length=500)
     content = models.TextField()
+    sample_input = models.TextField(max_length=500)
+    sample_output = models.TextField(max_length=500)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
 
-
-class Progress(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    completed = models.BooleanField(default=False)
-    progress_percentage = models.FloatField(default=0.0)
+class Submission(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    code = models.TextField()
+    submitted_at = models.DateTimeField(auto_now_add=True)
+    ai_feedback = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.course.title}"
+        return f"Submission by {self.user.username} for {self.lesson.title}"

@@ -2,6 +2,7 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.utils.text import slugify
 from .models import Lesson, Submission
 from rest_framework import status
 from django.http import JsonResponse
@@ -17,9 +18,13 @@ lessons_data = [
 def hello_world(request):
     return Response({'message': 'Hello, world, Backend!!!'})
 
-# @api_view(['GET'])
-# def get_lessons(request, slug):
-#
+@api_view(['GET'])
+def get_lesson(request, slug):
+    # Normalize the slug for matching
+    for lesson in lessons_data:
+        if slugify(lesson["title"]) == slug:
+            return Response(lesson)
+    return Response({"error": "Lesson not found"}, status=404)
 
 
 @api_view(['POST'])

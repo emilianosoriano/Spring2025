@@ -55,4 +55,20 @@ env/
 .vscode/
 .idea/
 *.swp
-../.idea/
+*.swo
+
+# Dependency directories
+.pnpm/
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+
+# Next.js build output
+.next/
+out/
+
+# Lint cache
+.eslintcache
+
+# Coverage directory
+coverage/

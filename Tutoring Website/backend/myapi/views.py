@@ -29,12 +29,28 @@ def get_lesson(request, slug):
 
 @api_view(['POST'])
 def submit_code(request):
-    code = request.data.get('code', '')
+    try:
+        # Extract the code from the request
+        code = request.data.get('code', '').strip()
 
-    if not code.strip():
-        return JsonResponse({'error': 'No code provided!'}, status=status.HTTP_400_BAD_REQUEST)
+        if not code:
+            return Response({'error': 'No code provided!'}, status=status.HTTP_400_BAD_REQUEST)
 
-    # Dummy feedback
-    feedback = "Your code looks fine, but consider improving variable names."
+        # AI Integration placeholder (use an AI model API here)
+        # For example, integrate OpenAI's API
+        # ai_feedback = call_ai_model(code)
 
-    return JsonResponse({'feedback': feedback, 'submitted_code': code}, status=status.HTTP_200_OK)
+        # Dummy feedback
+        feedback = "Your code looks fine, but consider improving variable names."
+
+        # Construct the response
+        response_data = {
+            'feedback': feedback,
+            'submitted_code': code,
+        }
+
+        print(response_data)
+        return JsonResponse(response_data, status=status.HTTP_200_OK)
+
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
